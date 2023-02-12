@@ -23,8 +23,8 @@ public class MemberRepository {
     }
 
     public List<Member> findByNick(String nick) {
-        return em.createQuery("select m from Member m where m.nickName = :nickName", Member.class)
-                .setParameter("nickName", nick)
+        return em.createQuery("select m from Member m where m.nick = :nick", Member.class)
+                .setParameter("nick", nick)
                 .getResultList();
     }
 }

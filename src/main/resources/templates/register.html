@@ -78,14 +78,14 @@
           <div class="row justify-content-md-center">
             <div class="col-sm-3">
               <label for="name" class="form-label">Name</label>
-              <input type="text" th:classapend="${#fields.hasErrors('name')} ? is-invalid" class="form-control" id="name" placeholder="이름을 입력하세요" required autofocus>
-              <div class="invalid-feedback" th:if="${#fields.hasErrors('name')}" th:errors="*{name}">중복회원</div>
+              <input type="text" th:field="*{name}" class="form-control" id="name" placeholder="이름을 입력하세요" >
+              <div class="invalid-feedback" ></div>
             </div>
 
             <div class="col-sm-3">
-              <label for="nickName" class="form-label">Nick name</label>
-              <input type="text" th:classapend="${#fields.hasErrors('nickName')} ? is-invalid" class="form-control" id="nickName" placeholder="별명을 입력하세요" required autofocus>
-              <div class="invalid-feedback" th:if="${#fields.hasErrors('nickName')}" th:errors="*{nickName}">중복별명</div>
+              <label for="nick" class="form-label">Nick name</label>
+              <input type="text" th:field="*{nick}" class="form-control" id="nick" placeholder="별명을 입력하세요" >
+              <div class="invalid-feedback">중복별명</div>
             </div>
             <p></p>
             <div class="col-6">
