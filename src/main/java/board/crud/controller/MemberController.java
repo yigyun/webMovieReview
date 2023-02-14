@@ -3,6 +3,7 @@ package board.crud.controller;
 import board.crud.Service.LoginService;
 import board.crud.Service.MemberService;
 import board.crud.domain.Member;
+import board.crud.dto.MemberDTO;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,22 +28,17 @@ public class MemberController {
 
     @GetMapping("/register/new")
     public String register(Model model) {
-        model.addAttribute("memberForm", new MemberForm());
+        model.addAttribute("memberDTO", new MemberDTO());
         return "register";
     }
 
     @PostMapping(value = "/register/new")
-    public String create(@Validated MemberForm memberForm, BindingResult bindingResult) {
+    public String create(@Validated MemberDTO memberDTO, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
             return "register";
         } else {
-            Member member = new Member();
-            member.setId(memberForm.getId());
-            member.setPassword(memberForm.getPassword());
-            member.setName(memberForm.getName());
-            member.setNick(memberForm.getNick());
-
-            memberService.join(member);
+            log.info("member id : "+memberDTO.getId());
+            memberService.join(memberDTO);
             return "redirect:/";
         }
     }
