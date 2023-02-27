@@ -1,35 +1,33 @@
 package board.crud.dto;
 
 
-import board.crud.domain.Member;
+import board.crud.member.Member;
 import lombok.*;
 
 @Getter
-@NoArgsConstructor
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
 @ToString
 public class MemberDTO {
 
     private Long mid;
     private String name;
     private String nick;
-    private String id;
+    private String username;
     private String password;
 
     public Member toEntity(){
         return Member.builder()
-                .mid(mid)
                 .name(name)
                 .nick(nick)
-                .id(id)
+                .username(username)
                 .password(password).build();
     }
 
     @Builder
-    public MemberDTO(Long mid, String name, String nick, String id, String password)
+    public MemberDTO(String name, String nick, String username, String password)
     {
-        this.mid = mid;
         this.name = name;
-        this.id = id;
+        this.username = username;
         this.password = password;
         this.nick = nick;
     }

@@ -1,6 +1,6 @@
 package board.crud.repository;
 
-import board.crud.domain.Movie;
+import board.crud.entity.Movie;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
 

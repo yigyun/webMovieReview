@@ -1,6 +1,6 @@
 package board.crud.controller;
 
-import board.crud.domain.Rating;
+import board.crud.entity.Rating;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

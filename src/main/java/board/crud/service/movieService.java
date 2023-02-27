@@ -1,4 +1,4 @@
-package board.crud.Service;
+package board.crud.service;
 
 import board.crud.repository.MovieRepository;
 import lombok.RequiredArgsConstructor;

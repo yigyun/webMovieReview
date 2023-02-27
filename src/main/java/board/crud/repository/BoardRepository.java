@@ -1,6 +1,6 @@
 package board.crud.repository;
 
-import board.crud.domain.Board;
+import board.crud.entity.Board;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
 

@@ -8,7 +8,7 @@
 <body>
 <header th:insert="fragment/header.html"></header>
 <div class="container">
-  <form th:action="@{'/board/post/update/' + ${post.id}}" th:method="put">
+  <form th:action="@{'/TPW/board/post/update/' + ${post.id}}" th:method="put">
     <input type="hidden" name="_method" value="put" />
     <input type="hidden" name="id" th:value="${post.id}" />
     <div class="form-group row">

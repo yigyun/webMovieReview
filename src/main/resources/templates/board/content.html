@@ -2,7 +2,7 @@
 <html lang="ko" xmlns:th="http://www.thymeleaf.org">
 <head>
   <meta charset="UTF-8" />
-  <title th:text="@{'게시판 - ' + ${post.title}}"></title>
+  <title th:text="@{'리뷰 게시판 - ' + ${post.title}}"></title>
   <link href="/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
 </head>
 <body>
@@ -23,10 +23,10 @@
   <div class="row mt-3">
     <div class="col-auto mr-auto"></div>
     <div class="col-auto">
-      <a class="btn btn-info" th:href="@{'/board/post/update/' + ${post.id}}" role="button">수정</a>
+      <a class="btn btn-info" th:href="@{'/TPW/board/post/update/' + ${post.id}}" role="button">수정</a>
     </div>
     <div class="col-auto">
-      <form id="delete-form" th:action="@{'/board/post/' + ${post.id}}" method="post">
+      <form id="delete-form" th:action="@{'/TPW/board/post/' + ${post.id}}" method="post">
         <input type="hidden" name="_method" value="delete" />
         <button id="delete-btn" type="submit" class="btn btn-danger">삭제</button>
       </form>

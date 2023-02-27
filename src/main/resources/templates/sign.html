@@ -7,8 +7,6 @@
     <title>Sign</title>
     <link href="/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
 
-<link href="/css/bootstrap.min.css" rel="stylesheet">
-
     <style>
       .bd-placeholder-img {
         font-size: 1.125rem;
@@ -69,17 +67,21 @@
   <body class="text-center">
     
 <main class="form-signin w-100 m-auto">
-  <form class="form-signin" th:action="@{/}" method="post">
+  <form class="form-signin" th:action="@{/TPW/login}" method="post">
     <img class="mb-4" src="/image/logo_sign.png" alt="" width="250" height="145">
     <h1 class="h3 mb-3 fw-normal">로그인</h1>
-
-    <div class="form-floating">
-      <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com">
-      <label for="floatingInput">ID</label>
+    <div th:if="${param.error}">
+      <div class="alert alert-danger">
+        ID 또는 비밀번호를 확인해 주세요.
+      </div>
     </div>
     <div class="form-floating">
-      <input type="password" class="form-control" id="floatingPassword" placeholder="Password">
-      <label for="floatingPassword">Password</label>
+      <input type="text" class="form-control" id="username" placeholder="아이디를 입력하세요.">
+      <label for="username">ID</label>
+    </div>
+    <div class="form-floating">
+      <input type="password" class="form-control" id="password" placeholder="비밀번호를 입력하세요.">
+      <label for="password">Password</label>
     </div>
 
     <div class="checkbox mb-3">
@@ -87,10 +89,10 @@
         <input type="checkbox" value="remember-me"> Remember me
       </label>
     </div>
-    <a class="w-100 btn btn-lg btn-primary" href="/mainpage">Sign in</a>
+    <button type="submit" class="w-100 btn btn-lg btn-primary" >로그인</button>
     <p></p>
   </form>
-    <a class="w-100 btn btn-lg btn-primary" href="/register/new">Register</a>
+    <a class="w-100 btn btn-lg btn-primary" th:href="@{/TPW/register/new}">Register</a>
   <p class="mt-5 mb-3 text-muted">&copy; 2023</p>
 </main>
   </body>

@@ -1,14 +1,14 @@
-package board.crud.Service;
+package board.crud.service;
 
-import board.crud.domain.Member;
+import board.crud.exception.CustomValidationException;
+import board.crud.member.Member;
 import board.crud.dto.MemberDTO;
 import board.crud.repository.MemberRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
-import java.util.List;
 
 @Service
 @Transactional(readOnly = true)
@@ -16,18 +16,18 @@ import java.util.List;
 @Slf4j
 public class MemberService {
     private final MemberRepository memberRepository;
+    private final PasswordEncoder passwordEncoder;
 
     @Transactional
     public Long join(MemberDTO memberDTO) {
+        if(memberRepository.existsByNick(memberDTO.getNick())){
+            throw new IllegalStateException("닉네임이 중복입니다.");
+        }else if(memberRepository.existsByUsername(memberDTO.getUsername())){
+            throw new IllegalStateException("아이디가 중복입니다.");
+        }
         Member member = memberDTO.toEntity();
-        validateDuplicateMember(member);
+
         memberRepository.save(member);
         return member.getMid();
-    }
-
-    private void validateDuplicateMember(Member member) {
-        List<Member> findMembers = memberRepository.findByNick(member.getNick());
-        if (!findMembers.isEmpty())
-            throw new IllegalStateException("이미 존재하는 닉네임입니다.");
     }
 }

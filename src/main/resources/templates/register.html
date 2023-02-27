@@ -7,7 +7,6 @@
     <link href="/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
 
     <link href="/css/bootstrap.min.css" rel="stylesheet">
-
     <style>
       .bd-placeholder-img {
         font-size: 1.125rem;
@@ -63,7 +62,6 @@
 
     
     <!-- Custom styles for this template -->
-    <link href="/css/form-validation.css" rel="stylesheet">
   </head>
   <body class="bg-light">
 
@@ -73,7 +71,8 @@
       <h2>Register form</h2>
     </div>
     <div class="col justify-content-center">
-      <form role="form" th:action="@{/register/new}" th:object ="${memberDTO}" method="post" class="needs-validation" novalidate>
+      <form role="form" th:action="@{/TPW/register/new}" th:object ="${memberForm}" method="post" class="needs-validation" novalidate>
+<!--        <div th:replace="~{form_errors :: formErrorsFragment"></div>-->
         <div class="row justify-content-md-center">
           <div class="col-sm-3">
             <label for="name" class="form-label">Name</label>
@@ -83,13 +82,13 @@
 
           <div class="col-sm-3">
             <label for="nick" class="form-label">Nick name</label>
-            <input type="text" th:field="*{nick}" class="form-control" id="nick" placeholder="별명을 입력하세요" >
-            <div class="invalid-feedback">중복별명</div>
+            <input type="text" th:field="*{nick}" th:classappend="${#fields.hasErrors('nick')} ? 'invalid' : 'form-control'" class="form-control" id="nick" placeholder="별명을 입력하세요">
+            <div class="invalid" th:if="${#fields.hasErrors('nick')}" th:errors="*{nick}">닉네임이 중복입니다.</div>
           </div>
           <p></p>
           <div class="col-6">
             <label for="uid" class="form-label">ID<span class="text-muted"></span></label>
-            <input type="text" th:field="*{id}" class="form-control" id="uid">
+            <input type="text" th:field="*{username}" class="form-control" id="uid">
             <div class="invalid-feedback">
               Please enter a valid id.
             </div>
@@ -115,8 +114,6 @@
     <p class="mb-1">&copy; 2023 </p>
   </footer>
 </div>
-    <script src="/js/bootstrap.bundle.min.js"></script>
-
-      <script src="/js/form-validation.js"></script>
+<!--    <-! <script th:src="@{/js/bootstrap.bundle.min.js}"></script> ->-->
   </body>
 </html>

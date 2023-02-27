@@ -1,7 +1,7 @@
 package board.crud.dto;
 
 
-import board.crud.domain.Board;
+import board.crud.entity.Board;
 import lombok.*;
 
 import java.time.LocalDateTime;

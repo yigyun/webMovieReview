@@ -1,13 +1,12 @@
-package board.crud.Service;
+package board.crud.service;
 
-import board.crud.domain.Board;
+import board.crud.entity.Board;
 import board.crud.dto.BoardDTO;
 import board.crud.repository.BoardRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 

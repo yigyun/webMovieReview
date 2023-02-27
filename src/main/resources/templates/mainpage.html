@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml" xmlns:sec="http://www.w3.org/1999/xhtml">
     <head>
         <meta charset="utf-8" />
         <title>Homepage</title>
@@ -8,13 +8,21 @@
     </head>
     <body>
         <!-- Navigation-->
-        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <nav th:fragment="navbarFragment" class="navbar navbar-expand-lg navbar-light bg-light">
             <div class="container px-4 px-lg-5">
                 <a class="navbar-brand" href="/mainpage">TPW</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
-                        <li class="nav-item"><a class="nav-link" href="#!">Review</a></li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#!">Review</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" sec:authorize="isAnonymous()" th:href="@{/TPW/login}">로그인</a>
+                            <a class="nav-link" sec:authorize="isAuthenticated()" th:href="@{/TPW/logout}">로그아웃</a>
+                        </li>
                     </ul>
                 </div>
             </div>
@@ -56,7 +64,7 @@
                             </div>
                             <!-- Product actions-->
                             <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
-                                <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="/board/list">Review</a></div>
+                                <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="/TPW/board/list">Review</a></div>
                             </div>
                         </div>
                     </div>
@@ -84,7 +92,7 @@
                             </div>
                             <!-- Product actions-->
                             <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
-                                <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="/review/{id}">Review</a></div>
+                                <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="/TPW/review/{id}">Review</a></div>
                             </div>
                         </div>
                     </div>
@@ -111,7 +119,7 @@
                             </div>
                             <!-- Product actions-->
                             <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
-                                <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="/review/{id}">Review</a></div>
+                                <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="/TPW/review/{id}">Review</a></div>
                             </div>
                         </div>
                     </div>
@@ -138,7 +146,7 @@
                             </div>
                             <!-- Product actions-->
                             <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
-                                <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="/review/{id}">Review</a></div>
+                                <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="/TPW/review/{id}">Review</a></div>
                             </div>
                         </div>
                     </div>

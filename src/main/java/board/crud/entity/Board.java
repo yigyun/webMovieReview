@@ -1,4 +1,4 @@
-package board.crud.domain;
+package board.crud.entity;
 
 import lombok.*;
 import org.springframework.data.annotation.CreatedDate;
@@ -12,10 +12,11 @@ import java.time.LocalDateTime;
 @EntityListeners(AuditingEntityListener.class) // JPA에게 쓰이는거 감시함을 알린다.
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
+@Table(name = "Board")
 public class Board {
 
-    @Id
-    @GeneratedValue
+    @Id             // 기본키로 설정
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @Column(length = 100, nullable = false)
@@ -33,6 +34,9 @@ public class Board {
 
     @LastModifiedDate
     private LocalDateTime modifiedTime;
+
+    //@ManyToOne // 영화 하나에 여러개의 글이 달릴 수 있다. 나중에 추가할 사항이다.
+    //private Movie movie;
 
     @Builder
     public Board(Long id, String author, String title, String content) {

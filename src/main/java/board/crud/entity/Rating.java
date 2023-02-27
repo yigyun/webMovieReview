@@ -1,4 +1,4 @@
-package board.crud.domain;
+package board.crud.entity;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;

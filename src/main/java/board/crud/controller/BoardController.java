@@ -1,9 +1,7 @@
 package board.crud.controller;
 
-import board.crud.Service.BoardService;
-import board.crud.domain.Board;
+import board.crud.service.BoardService;
 import board.crud.dto.BoardDTO;
-import board.crud.dto.MemberDTO;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
@@ -12,12 +10,11 @@ import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
-import javax.annotation.PostConstruct;
 import java.util.List;
 
 @Controller
 @Slf4j
-@RequestMapping("/board")
+@RequestMapping("/TPW/board")
 @RequiredArgsConstructor
 public class BoardController {
 
