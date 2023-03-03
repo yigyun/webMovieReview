@@ -11,10 +11,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 public class MainController {
 
     @GetMapping("/mainpage")
-    public String mainpage(Model model){
-        //List<Movie> movies = movieService.findMovies();
-        model.addAttribute("rating", new Rating());
+    public String mainpage(Model model) {
+        model.addAttribute("movieList", movieApiService.getInfo());
         return "mainpage";
     }
-
 }

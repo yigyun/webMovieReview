@@ -1,19 +1,26 @@
 package board.crud.entity;
 
 
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
-import java.util.List;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import java.util.Date;
 
+@Entity
+@NoArgsConstructor
 @Getter
 @Setter
-@NoArgsConstructor
 public class Movie {
-    private float stars;
+    @Id
+    private Long id;
+
     private String title;
 
-    //@OneToMany(mappedBy = "question", cascade = CascadeType.REMOVE)
-   // private List<Board> boardList;
+    private String description;
+
+    private String posterPath;
+
+    private Double voteAverage;
 }
+
