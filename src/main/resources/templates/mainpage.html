@@ -7,142 +7,38 @@
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     </head>
     <body>
-        <!-- Navigation-->
-        <nav class="navbar navbar-expand-lg navbar-light bg-light">
-            <div class="container px-4 px-lg-5">
-                <a class="navbar-brand" href="/mainpage">TPW</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
-                        <li class="nav-item"><a class="nav-link" href="#!">Review</a></li>
-                    </ul>
-                </div>
-            </div>
-        </nav>
         <!-- Header-->
-        <header class="bg-dark py-3">
-            <div class="container px-2 px-lg-3 my-3">
-                <div class="text-center text-white">
-                    <!-- <h1 class="display-4 fw-bolder">The people watching</h1> -->
-                    <img class="mb-4" src="/image/mainlogo.png" alt="" width="250" height="145">
-                </div>
-            </div>
-        </header>
+        <div th:replace="~{/fragment/header.html :: fragment-header}"></div>
         <!-- Section-->
         <section class="py-5">
             <div class="container px-4 px-lg-5 mt-5">
                 <h2>영화</h2>
                 <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
+                    <!--영화 보여지는 부분-->
                     <div class="col mb-5">
-                        <div class="card h-100">
-                            <!-- Product image-->
-                            <img class="poster_1" src="/image/avengers_endgame_ver2.jpg" alt="..." />
-                            <!-- Product details-->
-                            <div class="card-body p-4">
+                        <div th:block th:each="movie, movieStat : ${movieList}">
                                 <div class="text-center">
+                                    <!-- Product image-->
+                                    <img th:src="${movie.posterPath}">
                                     <!-- Product name-->
-                                    <h5 class="fw-bolder"><span th:text="${movie}"></span></h5>
+                                    <h5 class="fw-bolder"><span th:text="${movie.title}"></span></h5>
                                     <div class="d-flex justify-content-sm-center text-warning mb-2">
-                                        <th:block th:each="num,iterStat : ${#numbers.sequence(1,5)}">
-                                             <span th:if="${rating.stars} >= ${iterStat.count}"
+                                        <th:block th:each="num, iterStat : ${#numbers.sequence(1,5)}">
+                                             <span th:if="${movie.voteAverage} >= ${iterStat.count}"
                                                    class="material-icons"
                                                    style="color: orange;">grade</span>
-                                            <span th:if="${rating.stars} < ${iterStat.count}"
+                                            <span th:if="${movie.voteAverage} < ${iterStat.count}"
                                                   class="material-icons"
                                                   style="color: grey;">grade</span>
                                         </th:block>
                                     </div>
                                 </div>
-                            </div>
                             <!-- Product actions-->
-                            <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
-                                <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="/board/list">Review</a></div>
-                            </div>
+
+                            <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="/board/list">Detail</a></div>
+                            <p></p>
                         </div>
                     </div>
-                    <!--여기부분까지를 반복 4번시킨다.-->
-                    <div class="col mb-5">
-                        <div class="card h-100">
-                            <!-- Product image-->
-                            <img class="poster_1" src="/image/avengers_endgame_ver2.jpg" alt="..." />
-                            <!-- Product details-->
-                            <div class="card-body p-4">
-                                <div class="text-center">
-                                    <!-- Product name-->
-                                    <h5 class="fw-bolder"><span th:text="${movie}"></span></h5>
-                                    <div class="d-flex justify-content-sm-center text-warning mb-2">
-                                        <th:block th:each="num,iterStat : ${#numbers.sequence(1,5)}">
-                                             <span th:if="${rating.stars} >= ${iterStat.count}"
-                                                   class="material-icons"
-                                                   style="color: orange;">grade</span>
-                                            <span th:if="${rating.stars} < ${iterStat.count}"
-                                                  class="material-icons"
-                                                  style="color: grey;">grade</span>
-                                        </th:block>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- Product actions-->
-                            <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
-                                <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="/review/{id}">Review</a></div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col mb-5">
-                        <div class="card h-100">
-                            <!-- Product image-->
-                            <img class="poster_1" src="/image/avengers_endgame_ver2.jpg" alt="..." />
-                            <!-- Product details-->
-                            <div class="card-body p-4">
-                                <div class="text-center">
-                                    <!-- Product name-->
-                                    <h5 class="fw-bolder"><span th:text="${movie}"></span></h5>
-                                    <div class="d-flex justify-content-sm-center text-warning mb-2">
-                                        <th:block th:each="num,iterStat : ${#numbers.sequence(1,5)}">
-                                             <span th:if="${rating.stars} >= ${iterStat.count}"
-                                                   class="material-icons"
-                                                   style="color: orange;">grade</span>
-                                            <span th:if="${rating.stars} < ${iterStat.count}"
-                                                  class="material-icons"
-                                                  style="color: grey;">grade</span>
-                                        </th:block>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- Product actions-->
-                            <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
-                                <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="/review/{id}">Review</a></div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col mb-5">
-                        <div class="card h-100">
-                            <!-- Product image-->
-                            <img class="poster_1" src="/image/avengers_endgame_ver2.jpg" alt="..." />
-                            <!-- Product details-->
-                            <div class="card-body p-4">
-                                <div class="text-center">
-                                    <!-- Product name-->
-                                    <h5 class="fw-bolder"><span th:text="${movie}"></span></h5>
-                                    <div class="d-flex justify-content-sm-center text-warning mb-2">
-                                        <th:block th:each="num,iterStat : ${#numbers.sequence(1,5)}">
-                                             <span th:if="${rating.stars} >= ${iterStat.count}"
-                                                   class="material-icons"
-                                                   style="color: orange;">grade</span>
-                                            <span th:if="${rating.stars} < ${iterStat.count}"
-                                                  class="material-icons"
-                                                  style="color: grey;">grade</span>
-                                        </th:block>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- Product actions-->
-                            <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
-                                <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="/review/{id}">Review</a></div>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Product actions-->
                 </div>
             </div>
 

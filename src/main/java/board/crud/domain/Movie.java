@@ -1,15 +1,25 @@
 package board.crud.domain;
 
 
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import java.util.Date;
+
+@Entity
+@NoArgsConstructor
 @Getter
 @Setter
-@NoArgsConstructor
 public class Movie {
-    private float stars;
+    @Id
+    private Long id;
+
     private String title;
 
+    private String description;
+
+    private String posterPath;
+
+    private Double voteAverage;
 }
