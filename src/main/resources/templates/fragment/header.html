@@ -1,26 +1,26 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-  <div th:fragment="fragment-header">
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-      <div class="container px-4 px-lg-5">
-        <a class="navbar-brand" href="/mainpage">TPW</a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-          <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
-            <li class="nav-item"><a class="nav-link" href="#!">영화</a></li>
-            <li class="nav-item"><a class="nav-link" href="#!">TV</a></li>
-            <li class="nav-item"><a class="nav-link" href="#!">게시판</a></li>
-          </ul>
-          <button class="d-flex btn" type="submit">로그아웃</button>
-        </div>
+<div th:fragment="fragment-header">
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container px-4 px-lg-5">
+      <a class="navbar-brand" href="/mainpage">TPW</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
+          <li class="nav-item"><a class="nav-link" href="#!">영화</a></li>
+          <li class="nav-item"><a class="nav-link" href="#!">TV</a></li>
+          <li class="nav-item"><a class="nav-link" href="#!">게시판</a></li>
+        </ul>
+        <button class="d-flex btn" type="submit">로그아웃</button>
       </div>
-    </nav>
-    <header class="bg-dark py-3">
-      <div class="container px-2 px-lg-3 my-3">
-        <div class="text-center text-white">
-          <img class="mb-4" src="/image/mainlogo.png" alt="" width="250" height="145">
-        </div>
+    </div>
+  </nav>
+  <header class="bg-dark py-3">
+    <div class="container px-2 px-lg-3 my-3">
+      <div class="text-center text-white">
+        <img class="mb-4" src="/image/mainlogo.png" alt="" width="250" height="145">
       </div>
-    </header>
-  </div>
+    </div>
+  </header>
+</div>
 </html>
