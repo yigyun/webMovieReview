@@ -1,0 +1,53 @@
+<!DOCTYPE  html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="utf-8" />
+  <title>Homepage</title>
+  <link href="/css/mainpage.css" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+</head>
+<body>
+<!-- header-->
+<div th:replace="~{/fragment/header.html :: fragment-header}"></div>
+<section class="py-5">
+  <div class="container px-4 px-lg-5 mt-5">
+    <h2>영화</h2>
+    <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
+      <!--영화 보여지는 부분-->
+      <div th:block th:each="movie, movieStat : ${movieList}">
+        <div class="col mb-5"><div class="card h-100"> <img th:src="${movie.posterPath}">
+          <div class="card-body p-4">
+            <div class="text-center">
+
+              <!-- Product name-->
+              <h5 class="fw-bolder"><span th:text="${movie.title}"></span></h5>
+              <div class="d-flex justify-content-sm-center text-warning mb-2">
+                <th:block th:each="num, iterStat : ${#numbers.sequence(1,5)}">
+                                             <span th:if="${movie.voteAverage} >= ${iterStat.count}"
+                                                   class="material-icons"
+                                                   style="color: orange;">grade</span>
+                  <span th:if="${movie.voteAverage} < ${iterStat.count}"
+                        class="material-icons"
+                        style="color: grey;">grade</span>
+                </th:block>
+              </div>
+            </div>
+            <!-- Product actions-->
+            <div class="text-center"><a class="btn btn-outline-dark mt-auto" th:href="@{/TPW/details/${title}(title = ${movie.title})}">Detail</a></div>
+            <p></p>
+          </div>
+        </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- Footer-->
+<footer class="py-5 bg-dark">
+  <div class="container"><p class="m-0 text-center text-white">Copyright &copy; Website 2023</p></div>
+</footer>
+<!-- Bootstrap core JS-->
+<script src="/js/bootstrap.bundle.min.js"></script>
+<!-- Core theme JS-->
+</body>
+</html>

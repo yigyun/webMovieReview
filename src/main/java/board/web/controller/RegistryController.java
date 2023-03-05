@@ -26,7 +26,7 @@ public class RegistryController {
     @GetMapping("/register/new")
     public String register(Model model) {
         model.addAttribute("memberForm", new MemberFormDTO());
-        return "register";
+        return "sign/register";
     }
 
 
@@ -35,7 +35,7 @@ public class RegistryController {
     public String create(@Valid @ModelAttribute(name = "memberForm") MemberFormDTO memberForm, BindingResult bindingResult, RedirectAttributes redirectAttributes) {
         log.info("회원가입 검증");
         if (bindingResult.hasErrors()) {
-            return "register";
+            return "sign/register";
         }
         MemberDTO memberDTO = MemberDTO.builder().
                 name(memberForm.getName())
@@ -49,7 +49,7 @@ public class RegistryController {
         } catch (Exception e){
             e.printStackTrace();
             bindingResult.reject("회원가입 실패", e.getMessage());
-            return "register";
+            return "sign/register";
         }
 
         return "redirect:/TPW/login";

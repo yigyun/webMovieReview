@@ -1,7 +1,7 @@
 package board.web.service;
 
-import board.crud.domain.movie.Movie;
-import board.web.repository.MovieRepository;
+import board.crud.domain.movie.Tv;
+import board.web.repository.TvRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.json.simple.JSONArray;
@@ -20,19 +20,19 @@ import java.util.List;
 @Service
 @RequiredArgsConstructor
 @Slf4j
-public class MovieApiService {
+public class TvApiService {
+
+    private final TvRepository tvRepository;
 
     String result = "";
-    private final MovieRepository movieRepository;
-
-    public List<Movie> getInfo() {
+    public List<Tv> getInfo() {
         log.info("영화 정보 가져오기 서비스");
         int pages = 1;
-        List<Movie> movieList = null;
+        List<Tv> tvList = null;
         try {
-            movieList = new ArrayList<Movie>();
+            tvList = new ArrayList<Tv>();
             for (int i = 1; i <= 1; i++) {
-                String apiUrl = "https://api.themoviedb.org/3/trending/movie/week?api_key=" + "2427bac740e35f09aeef05dbe339d784"
+                String apiUrl = "https://api.themoviedb.org/3/trending/tv/week?api_key=" + "2427bac740e35f09aeef05dbe339d784"
                         + "&language=ko-KR&page=" + i;
                 URL url = new URL(apiUrl);
 
@@ -47,17 +47,17 @@ public class MovieApiService {
                 JSONArray list = (JSONArray) jsonObject.get("results");
                 int size = list.size() < 4 ? list.size() : 4;
                 for (int k = 0; k < size; k++) {
-                    Movie movie = new Movie();
+                    Tv tv = new Tv();
                     JSONObject contents = (JSONObject) list.get(k);
                     String ImgUrl = "https://image.tmdb.org/t/p/w200";
                     String match = "[\"]";
-                    movie.setPosterPath(ImgUrl + contents.get("poster_path").toString().replace(match, ""));
-                    movie.setTitle(contents.get("title").toString());
-                    movie.setDescription(contents.get("overview").toString());
-                    movie.setVoteAverage(((Double)contents.get("vote_average")) / 2);
+                    tv.setPosterPath(ImgUrl + contents.get("poster_path").toString().replace(match, ""));
+                    tv.setName(contents.get("name").toString());
+                    tv.setDescription(contents.get("overview").toString());
+                    tv.setVoteAverage(((Double)contents.get("vote_average")) / 2);
                     //log.info("average={}", movie.getVoteAverage());
-                    movieList.add(movie);
-                    movieSave(movie);
+                    tvList.add(tv);
+                    tvSave(tv);
                 }
 
 
@@ -65,15 +65,15 @@ public class MovieApiService {
         } catch (Exception e){
             e.printStackTrace();
         }
-        return movieList;
+        return tvList;
     }
 
     @Transactional
-    public void movieSave(Movie movie){
-        movieRepository.save(movie);
+    public void tvSave(Tv tv){
+        tvRepository.save(tv);
     }
 
-    public Movie getDetail(String title){
-        return movieRepository.findByTitle(title);
+    public Tv getDetail(String name){
+        return tvRepository.findByName(name);
     }
 }

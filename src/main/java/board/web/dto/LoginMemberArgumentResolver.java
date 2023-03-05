@@ -1,6 +1,6 @@
 package board.web.dto;
 
-import board.SessionConst;
+import board.web.security.SessionConst;
 import board.crud.domain.member.Member;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.core.MethodParameter;

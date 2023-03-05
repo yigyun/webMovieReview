@@ -7,10 +7,15 @@ spring:
       enabled: true
 
   datasource:
+    # <H2>
     url: jdbc:h2:tcp://localhost/~/boardCRUD
     username: sa
     password: 1234
     driver-class-name: org.h2.Driver
+    #driver-class-name: com.mysql.cj.jdbc.Driver
+    #url: jdbc:mysql://localhost:3306/movie_db?serverTimezone=UTC&characterEncoding=UTF-8
+    #username: root
+    #password: akf5705l!
 
   jpa:
     database-platform: org.hibernate.dialect.H2Dialect

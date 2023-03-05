@@ -1,5 +1,5 @@
 package board.web.controller;
-import board.SessionConst;
+import board.web.security.SessionConst;
 import board.crud.domain.member.Member;
 import board.web.dto.LoginFormDTO;
 import board.web.security.LoginService;
@@ -29,7 +29,7 @@ public class MemberController {
     @GetMapping("/login")
     public String sign(@ModelAttribute("loginForm")LoginFormDTO form){
         log.info("sign controller");
-        return "sign";
+        return "sign/sign";
     }
 
     @PostMapping("/login")
@@ -39,14 +39,14 @@ public class MemberController {
 
         log.info("sign in");
         if(bindingResult.hasErrors())
-            return "sign";
+            return "sign/sign";
 
         Member loginMember = loginService.login(form.getUsername(), form.getPassword());
 
         if(loginMember == null){
             log.info("아이디 비밀번호 오류");
             bindingResult.reject("loginFail", "아이디 또는 비밀번호가 맞지 않습니다.");
-            return "sign";
+            return "sign/sign";
         }
         // 세션이 없으면 만들고 있으면 있는거 반환.
         HttpSession session = request.getSession();
