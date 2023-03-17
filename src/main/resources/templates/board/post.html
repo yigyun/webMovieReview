@@ -6,20 +6,13 @@
   <link href="/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
 </head>
 <body>
-<header th:insert="fragment/header.html"></header>
+<div th:replace="~{/fragment/header.html :: fragment-header}"></div>
 <div class="container">
-  <form role="form" th:action="@{/TPW/board/post}" th:object="${boardDTO}" method="post">
+  <form role="form" th:action th:object="${boardDTO}" method="post">
     <div class="form-group row">
       <label for="inputTitle" class="col-sm-2 col-form-label"><strong>제목</strong></label>
       <div class="col-sm-10">
-        <input type="text" th:field="*{title}" name="title" class="form-control" id="inputTitle" />
-      </div>
-    </div>
-    <p></p>
-    <div class="form-group row">
-      <label for="inputAuthor" class="col-sm-2 col-form-label"><strong>작성자</strong></label>
-      <div class="col-sm-10">
-        <input type="text" name="author" th:field="*{author}" class="form-control" id="inputAuthor" />
+        <input type="text" th:field="${boardDTO.title}" name="title" class="form-control" id="inputTitle" />
       </div>
     </div>
     <p></p>

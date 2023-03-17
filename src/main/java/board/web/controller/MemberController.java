@@ -1,10 +1,10 @@
 package board.web.controller;
 import board.web.security.SessionConst;
 import board.crud.domain.member.Member;
-import board.web.dto.LoginFormDTO;
+import board.crud.dto.LoginFormDTO;
 import board.web.security.LoginService;
 import board.web.service.MemberService;
-import board.web.session.SessionManager;
+import board.web.security.session.SessionManager;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;

@@ -1,4 +1,4 @@
-package board.web.dto;
+package board.crud.dto;
 
 
 import lombok.Getter;

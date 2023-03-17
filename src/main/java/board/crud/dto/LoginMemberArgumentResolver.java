@@ -1,4 +1,4 @@
-package board.web.dto;
+package board.crud.dto;
 
 import board.web.security.SessionConst;
 import board.crud.domain.member.Member;

@@ -6,7 +6,7 @@
   <link href="/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
 </head>
 <body>
-<header th:insert="fragment/header.html"></header>
+<div th:replace="~{/fragment/header.html :: fragment-header}"></div>
 <div class="container">
   <form th:action="@{'/TPW/board/post/update/' + ${post.id}}" th:method="put">
     <input type="hidden" name="_method" value="put" />

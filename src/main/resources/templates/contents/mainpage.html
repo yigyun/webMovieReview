@@ -15,7 +15,9 @@
                 <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
                     <!--영화 보여지는 부분-->
                     <div th:block th:each="movie, movieStat : ${movieList}">
-                        <div class="col mb-5"><div class="card h-100"> <img th:src="${movie.posterPath}">
+                        <div class="col mb-5" th:if="${movieStat.count} < 5">
+                            <div class="card h-100">
+                            <img th:src="${movie.posterPath}">
                             <div class="card-body p-4">
                                 <div class="text-center">
 
@@ -33,35 +35,7 @@
                                     </div>
                                 </div>
                                 <!-- Product actions-->
-
-                                <div class="text-center"><a class="btn btn-outline-dark mt-auto" th:href="@{/TPW/details/movie/{title}(title = ${movie.title})}">Detail</a></div>
-                                <p></p>
-                            </div>
-                        </div>
-                        </div>
-                    </div>
-                    <!--TV 보여지는 부분-->
-                    <div th:block th:each="tv, tvStat : ${tvList}">
-                        <div class="col mb-5"><div class="card h-100"> <img th:src="${tv.posterPath}">
-                            <div class="card-body p-4">
-                                <div class="text-center">
-
-                                    <!-- Product name-->
-                                    <h5 class="fw-bolder"><span th:text="${tv.name}"></span></h5>
-                                    <div class="d-flex justify-content-sm-center text-warning mb-2">
-                                        <th:block th:each="num, iterStat : ${#numbers.sequence(1,5)}">
-                                             <span th:if="${tv.voteAverage} >= ${iterStat.count}"
-                                                   class="material-icons"
-                                                   style="color: orange;">grade</span>
-                                            <span th:if="${tv.voteAverage} < ${iterStat.count}"
-                                                  class="material-icons"
-                                                  style="color: grey;">grade</span>
-                                        </th:block>
-                                    </div>
-                                </div>
-                                <!-- Product actions-->
-
-                                <div class="text-center"><a class="btn btn-outline-dark mt-auto" th:href="@{/TPW/details/tv/{name}(name = ${tv.name})}">Detail</a></div>
+                                <div class="text-center"><a class="btn btn-outline-dark mt-auto" th:href="@{/TPW/details/movie/{id}(id = ${movie.id})}">Detail</a></div>
                                 <p></p>
                             </div>
                         </div>

@@ -1,11 +1,11 @@
 package board.web.controller;
 
 import board.crud.domain.member.Member;
-import board.web.dto.Login;
+import board.crud.dto.Login;
 import board.web.repository.MemberRepository;
 import board.web.service.MovieApiService;
-import board.web.service.TvApiService;
-import board.web.session.SessionManager;
+
+import board.web.security.session.SessionManager;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -20,7 +20,6 @@ public class MainController {
     private final MovieApiService movieApiService;
     private final MemberRepository memberRepository;
     private final SessionManager sessionManager;
-    private final TvApiService tvApiService;
 
     @GetMapping("/mainpage")
     public String mainpage(@Login Member loginMember, Model model) {
@@ -28,29 +27,23 @@ public class MainController {
             return "sign";
         }
         model.addAttribute("movieList", movieApiService.getInfo());
-        model.addAttribute("tvList", tvApiService.getInfo());
         model.addAttribute("member", loginMember);
-
         return "/contents/mainpage";
     }
 
-    @GetMapping("/details/movie/{title}")
-    public String movieDetails(@Login Member loginMember, @PathVariable String title, Model model) {
-        if(loginMember == null){
-            return "sign";
-        }
-        model.addAttribute("movie", movieApiService.getDetail(title));
-        model.addAttribute("member", loginMember);
-        return "/contents/movie_details";
+    @GetMapping("/movie/list")
+    public String movieList(Model model){
+        model.addAttribute("movieList", movieApiService.getInfo());
+        return "/contents/movie";
     }
 
-    @GetMapping("/details/tv/{name}")
-    public String tvDetails(@Login Member loginMember, @PathVariable String name, Model model) {
+    @GetMapping("/details/movie/{id}")
+    public String movieDetails(@Login Member loginMember, @PathVariable("id") Long id, Model model) {
         if(loginMember == null){
             return "sign";
         }
-        model.addAttribute("tv", tvApiService.getDetail(name));
+        model.addAttribute("movie", movieApiService.getMovieById(id));
         model.addAttribute("member", loginMember);
-        return "/contents/tv_details";
+        return "/contents/movie_details";
     }
 }

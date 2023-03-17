@@ -25,55 +25,24 @@ public class MovieApiService {
     String result = "";
     private final MovieRepository movieRepository;
 
+    @Transactional(readOnly = true)
     public List<Movie> getInfo() {
         log.info("영화 정보 가져오기 서비스");
-        int pages = 1;
-        List<Movie> movieList = null;
-        try {
-            movieList = new ArrayList<Movie>();
-            for (int i = 1; i <= 1; i++) {
-                String apiUrl = "https://api.themoviedb.org/3/trending/movie/week?api_key=" + "2427bac740e35f09aeef05dbe339d784"
-                        + "&language=ko-KR&page=" + i;
-                URL url = new URL(apiUrl);
-
-                BufferedReader br;
-
-                br = new BufferedReader(new InputStreamReader(url.openStream(), "UTF-8"));
-
-                result = br.readLine();
-
-                JSONParser jsonParser = new JSONParser();
-                JSONObject jsonObject = (JSONObject) jsonParser.parse(result);
-                JSONArray list = (JSONArray) jsonObject.get("results");
-                int size = list.size() < 4 ? list.size() : 4;
-                for (int k = 0; k < size; k++) {
-                    Movie movie = new Movie();
-                    JSONObject contents = (JSONObject) list.get(k);
-                    String ImgUrl = "https://image.tmdb.org/t/p/w200";
-                    String match = "[\"]";
-                    movie.setPosterPath(ImgUrl + contents.get("poster_path").toString().replace(match, ""));
-                    movie.setTitle(contents.get("title").toString());
-                    movie.setDescription(contents.get("overview").toString());
-                    movie.setVoteAverage(((Double)contents.get("vote_average")) / 2);
-                    //log.info("average={}", movie.getVoteAverage());
-                    movieList.add(movie);
-                    movieSave(movie);
-                }
-
-
-            }
-        } catch (Exception e){
-            e.printStackTrace();
-        }
-        return movieList;
+        return movieRepository.findAll();
     }
 
-    @Transactional
-    public void movieSave(Movie movie){
-        movieRepository.save(movie);
+    @Transactional(readOnly = true)
+    public Movie getMovieById(Long id){
+        return movieRepository.findById(id).get();
     }
 
-    public Movie getDetail(String title){
-        return movieRepository.findByTitle(title);
+    @Transactional(readOnly = true)
+    public Movie getMovieByTitle(String title){
+        return movieRepository.findByTitle(title).get();
+    }
+
+    @Transactional(readOnly = true)
+    public Long getIdByTitle(String title){
+        return movieRepository.findByTitle(title).get().getId();
     }
 }

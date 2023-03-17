@@ -1,7 +1,7 @@
 package board.web.controller;
 
-import board.web.dto.MemberFormDTO;
-import board.web.dto.MemberDTO;
+import board.crud.dto.MemberFormDTO;
+import board.crud.dto.MemberDTO;
 import board.web.service.MemberService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;

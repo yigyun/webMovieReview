@@ -1,7 +1,7 @@
 package board.web.service;
 
 import board.crud.domain.member.Member;
-import board.web.dto.MemberDTO;
+import board.crud.dto.MemberDTO;
 import board.web.repository.MemberRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;

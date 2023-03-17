@@ -2,6 +2,10 @@ server:
   port: 9090
 
 spring:
+  mvc:
+    hidden-method:
+      filter:
+        enabled: true
   h2:
     console:
       enabled: true
@@ -9,13 +13,16 @@ spring:
   datasource:
     # <H2>
     url: jdbc:h2:tcp://localhost/~/boardCRUD
+    #url: jdbc:h2:mem:testdb
     username: sa
     password: 1234
     driver-class-name: org.h2.Driver
+
     #driver-class-name: com.mysql.cj.jdbc.Driver
     #url: jdbc:mysql://localhost:3306/movie_db?serverTimezone=UTC&characterEncoding=UTF-8
     #username: root
     #password: akf5705l!
+
 
   jpa:
     database-platform: org.hibernate.dialect.H2Dialect
@@ -24,10 +31,15 @@ spring:
       ddl-auto: create
     properties:
       hibernate:
-        show_sql: true # show, format sql은 콘솔창에서 sql들을 보기좋게 해준다.
+        #show_sql: true  # 이거는 System으로 출력이라서 안쓰는게 좋다.
+        # show, format sql은 콘솔창에서 sql들을 보기좋게 해준다.
         format_sql: true
     defer-datasource-initialization: true
+  profiles:
+    include: API-KEY
 
 logging:
   level:
     board.crud: DEBUG
+    org.hibernate.sql: debug
+    org.hibernate.type: trace

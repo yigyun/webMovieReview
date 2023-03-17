@@ -30,6 +30,7 @@
           <div><h3>상세설명</h3></div>
           <div th:text="${movie.description}"></div>
         </span>
+        <div class="text-center"><a class="btn btn-outline-dark mt-auto" th:href="@{/TPW/board/list/movie/{id}(id = ${movie.id})}">Review</a></div>
       </div>
     </div>
   </div>

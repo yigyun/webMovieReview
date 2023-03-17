@@ -1,34 +1,19 @@
 package board.web.repository;
 
 import board.crud.domain.board.Board;
-import lombok.RequiredArgsConstructor;
-import org.springframework.stereotype.Repository;
+import board.crud.domain.movie.Movie;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.repository.query.Param;
 
-import javax.persistence.EntityManager;
 import java.util.List;
-
-@Repository
-@RequiredArgsConstructor
-public class BoardRepository {
-
-    private final EntityManager em;
+import java.util.Optional;
 
 
-    public List<Board> findAll() {
-        return em.createQuery("select m from Board m", Board.class)
-                .getResultList();
-    }
+public interface BoardRepository extends JpaRepository<Board, Long> {
 
-    public void save(Board board) {
-        em.persist(board);
-    }
+    List<Board> findByMovie_Id(@Param(value = "movieID") Long movieID);
+    Optional<Board> findById(Long id);
+    List<Board> findAll();
+    Board findByTitle(String title);
 
-
-    public Board findById(Long id){
-        return em.find(Board.class, id);
-    }
-
-    public void deleteById(Long id) {
-        em.remove(em.find(Board.class, id));
-    }
 }

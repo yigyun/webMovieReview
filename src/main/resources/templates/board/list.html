@@ -6,13 +6,13 @@
         <link href="/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
     </head>
 <body>
-    <header th:insert="fragment/header.html"></header>
+<div th:replace="~{/fragment/header.html :: fragment-header}"></div>
     <div class="container">
         <table class="table">
             <thead class="thead-light">
             <tr class="text-center">
-                <th scope="col">#</th>
                 <th scope="col">제목</th>
+                <th scope="col">리뷰 제목</th>
                 <th scope="col">작성자</th>
                 <th scope="col">작성일</th>
             </tr>
@@ -20,12 +20,10 @@
             <tbody>
             <tr class="text-center" th:each="post : ${postList}">
                 <th scope="row">
-                    <span th:text="${post.id}"></span>
+                    <span th:text="${name}"></span>
                 </th>
                 <td>
-                    <a th:href="@{'/TPW/board/post/' + ${post.id}}">
-                        <span th:text="${post.title}"></span>
-                    </a>
+                    <a th:href="@{/TPW/board/post/{id}(id = ${post.id})}"><span th:text="${post.title}"></span></a>
                 </td>
                 <td>
                     <span th:text="${post.author}"></span>
@@ -38,8 +36,8 @@
         </table>
         <div class="row">
             <div class="col-auto mr-auto"></div>
-            <div class="col-auto">
-                <a class="btn btn-primary" th:href="@{/TPW/board/post}" role="button">리뷰 쓰기</a>
+            <div class="col-auto" >
+                <a class="btn btn-primary" th:href="@{/TPW/board/post/new/{title}(title = ${name})}" role="button">리뷰 쓰기</a>
             </div>
         </div>
     </div>

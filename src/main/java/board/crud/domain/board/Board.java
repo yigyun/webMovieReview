@@ -1,5 +1,6 @@
 package board.crud.domain.board;
 
+import board.crud.domain.movie.Movie;
 import lombok.*;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
@@ -35,15 +36,18 @@ public class Board {
     @LastModifiedDate
     private LocalDateTime modifiedTime;
 
-    //@ManyToOne // 영화 하나에 여러개의 글이 달릴 수 있다. 나중에 추가할 사항이다.
-    //private Movie movie;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "movie_id")
+    private Movie movie;
+
 
     @Builder
-    public Board(Long id, String author, String title, String content) {
+    public Board(Long id, String author, String title, String content, Movie movie) {
         this.id = id;
         this.author = author;
         this.title = title;
         this.content = content;
+        this.movie = movie;
     }
 
     public void updateBoard(String title, String content){

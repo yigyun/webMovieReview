@@ -1,10 +1,12 @@
 package board.crud.domain.movie;
 
 
+import board.crud.domain.board.Board;
 import lombok.*;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @NoArgsConstructor
@@ -23,5 +25,8 @@ public class Movie {
     private String posterPath;
 
     private Double voteAverage;
+
+    @OneToMany(mappedBy = "movie", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private List<Board> boardList;
 }
 
