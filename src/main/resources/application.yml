@@ -12,8 +12,8 @@ spring:
 
   datasource:
     # <H2>
-    url: jdbc:h2:tcp://localhost/~/boardCRUD
-    #url: jdbc:h2:mem:testdb
+    #url: jdbc:h2:tcp://localhost/~/boardCRUD
+    url: jdbc:h2:mem:testdb
     username: sa
     password: 1234
     driver-class-name: org.h2.Driver
@@ -23,17 +23,25 @@ spring:
     #username: root
     #password: akf5705l!
 
+    # postgres
+    #url: jdbc:postgresql://ls-c951181d94e7e8d62bf76490eccde2c300899570.clxmx5oluleg.ap-northeast-2.rds.amazonaws.com:5432/tpw
+    #driver-class-name: org.postgresql.Driver
+    #username: postgres
+    #password: qwe123
+
 
   jpa:
-    database-platform: org.hibernate.dialect.H2Dialect
+    #database-platform: org.hibernate.dialect.H2Dialect
     open-in-view: true
     hibernate:
-      ddl-auto: create
+      ddl-auto: update
+
     properties:
       hibernate:
         #show_sql: true  # 이거는 System으로 출력이라서 안쓰는게 좋다.
         # show, format sql은 콘솔창에서 sql들을 보기좋게 해준다.
         format_sql: true
+        #dialect: org.hibernate.dialect.PostgreSQLDialect
     defer-datasource-initialization: true
   profiles:
     include: API-KEY
