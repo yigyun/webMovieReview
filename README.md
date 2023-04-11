@@ -26,7 +26,3 @@ MEGA BOX를 참고하여 만든 영화 예매 사이트입니다.
 - tmdb API를 통해 영화 관련 데이터 연동
 - 영화 Detail(주요 줄거리) 페이지
 - 리뷰 게시판(각 영화의 리뷰 리스트를 가져온다) 관련 CRUD 기능
-
-## 리팩토링
-- Exception 핸들링, 처리 with Spring AOP
-- Junit 테스트 작성
