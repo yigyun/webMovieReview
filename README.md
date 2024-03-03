@@ -16,7 +16,7 @@ MEGA BOX를 참고하여 만든 영화 예매 사이트입니다.
 - Other : Spring Data JPA, Json-Simple, lombok, Spring MVC
 
 ## 📌 주요 기능
-#### 로그인
+#### [로그인](./login.txt)
 - 로그인 시 Username, Password 검증
 - 로그인 시 쿠키(Cookie) 및 세션(Session) 생성
 #### 회원가입
